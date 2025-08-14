@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  --neon-green: hsl(120, 100%, 33%);
+  --neon-yellow: hsl(60, 100%, 50%);
+  --dark-primary: hsl(240, 5%, 4%);
+  --dark-secondary: hsl(240, 6%, 10%);
+  --dark-tertiary: hsl(240, 5%, 15%);
+}
+
+.dark {
+  --background: hsl(240, 5%, 4%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 5%, 15%);
+  --muted-foreground: hsl(240, 5%, 65%);
+  --popover: hsl(240, 5%, 4%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 6%, 10%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 5%, 15%);
+  --input: hsl(240, 5%, 15%);
+  --primary: hsl(120, 100%, 33%);
+  --primary-foreground: hsl(240, 5%, 4%);
+  --secondary: hsl(240, 5%, 15%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 5%, 15%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+  
+  --neon-green: hsl(120, 100%, 33%);
+  --neon-yellow: hsl(60, 100%, 50%);
+  --dark-primary: hsl(240, 5%, 4%);
+  --dark-secondary: hsl(240, 6%, 10%);
+  --dark-tertiary: hsl(240, 5%, 15%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    @apply font-sans antialiased bg-background text-foreground;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: hsl(240, 5%, 4%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%2300ff88' stroke-width='1.5' opacity='0.15'%3E%3Cpath d='M10 30h15c8 0 15 7 15 15v10c0 8-7 15-15 15h-8v15h-7V30z' /%3E%3Cpath d='M10 40h13c3 0 5 2 5 5s-2 5-5 5H10v-10z'/%3E%3Ctext x='45' y='48' font-family='Arial,sans-serif' font-size='20' font-weight='bold' fill='%2300ff88' opacity='0.2'%3Etmp%3C/text%3E%3C/g%3E%3Cg fill='none' stroke='%2300ff88' stroke-width='1' opacity='0.08'%3E%3Cpath d='M80 20h15c8 0 15 7 15 15v10c0 8-7 15-15 15h-8v15h-7V20z' /%3E%3Cpath d='M80 30h13c3 0 5 2 5 5s-2 5-5 5H80v-10z'/%3E%3Ctext x='15' y='88' font-family='Arial,sans-serif' font-size='16' font-weight='bold' fill='%2300ff88' opacity='0.15'%3Etmp%3C/text%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 120px 120px;
+  }
+
+  body {
+    background-color: hsl(240, 5%, 4%) !important;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    background-color: hsl(240, 5%, 4%);
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .neon-glow {
+    box-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green), 0 0 15px var(--neon-green);
+  }
+  
+  .neon-glow-hover:hover {
+    box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green), 0 0 30px var(--neon-green);
+  }
+  
+  .gradient-neon {
+    background: linear-gradient(45deg, var(--neon-green), var(--neon-yellow));
+  }
+  
+  .text-neon-green {
+    color: var(--neon-green);
+  }
+  
+  .text-neon-yellow {
+    color: var(--neon-yellow);
+  }
+  
+  .bg-neon-green {
+    background-color: var(--neon-green);
+  }
+  
+  .bg-neon-yellow {
+    background-color: var(--neon-yellow);
+  }
+  
+  .border-neon-green {
+    border-color: var(--neon-green);
+  }
+  
+  .border-neon-yellow {
+    border-color: var(--neon-yellow);
+  }
+}

@@ -11,6 +11,10 @@ import Article from "@/pages/article";
 // Import your articles here
 import { UltimateGuideToColdEmailing } from "./articles/ultimate-guide-to-cold-emailing";
 import { FiveCommonMistakes } from "./articles/5-common-mistakes-in-sales-outreach";
+// Add these new imports
+import { HowToPersonalize } from "./articles/how-to-personalize-cold-emails";
+import { AnalyzingSubjectLines } from "./articles/analyzing-best-cold-email-subject-lines";
+import { ABTestingGuide } from "./articles/ab-testing-your-cold-emails";
 // ... import all 20 articles
 
 function Header() {
@@ -30,6 +34,7 @@ function Header() {
   );
 }
 
+
 function Router() {
   return (
     <Switch>
@@ -47,6 +52,23 @@ function Router() {
           <FiveCommonMistakes />
         </Article>
       </Route>
+
+      {/* Add these new routes */}
+      <Route path="/blog/how-to-personalize-cold-emails">
+        <Article title="How to Personalize Cold Emails Without Being Creepy">
+          <HowToPersonalize />
+        </Article>
+      </Route>
+      <Route path="/blog/analyzing-best-cold-email-subject-lines">
+        <Article title="Analyzing the Best Cold Email Subject Lines We've Ever Seen">
+          <AnalyzingSubjectLines />
+        </Article>
+      </Route>
+      <Route path="/blog/ab-testing-your-cold-emails">
+        <Article title="A/B Testing Your Cold Emails: A Step-by-Step Guide">
+          <ABTestingGuide />
+        </Article>
+      </Route>
       {/* ... add a route for each of the 20 articles */}
 
       <Route component={NotFound} />
@@ -61,20 +83,6 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Header />
-          <Router />
-        </TooltipProvider>
-      </QueryClientProvider>
-    </div>
-  );
-}
-
-export default App;
-function App() {
-  return (
-    <div className="dark">
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
           <Router />
         </TooltipProvider>
       </QueryClientProvider>

@@ -14,10 +14,13 @@ import { FiveCommonMistakes } from "./articles/5-common-mistakes-in-sales-outrea
 import { HowToPersonalize } from "./articles/how-to-personalize-cold-emails";
 import { AnalyzingSubjectLines } from "./articles/analyzing-best-cold-email-subject-lines";
 import { ABTestingGuide } from "./articles/ab-testing-your-cold-emails";
-// Add these new imports
 import { ArtOfTheFollowUp } from "./articles/art-of-the-follow-up";
 import { NeverHeardOfYou } from "./articles/never-heard-of-you-emails";
 import { SpamToSale } from "./articles/spam-to-sale-deliverability-guide";
+// Add these new imports
+import { FindingEmailAddress } from "./articles/finding-anyones-email-address";
+import { PerfectCTA } from "./articles/crafting-the-perfect-cta";
+import { AISupercharge } from "./articles/ai-supercharge-cold-email";
 // ... import all 20 articles
 
 function Header() {
@@ -69,8 +72,6 @@ function Router() {
           <ABTestingGuide />
         </Article>
       </Route>
-
-      {/* Add these new routes */}
       <Route path="/blog/art-of-the-follow-up">
         <Article title="The Art of the Follow-Up: How to Craft a High-Converting Email Sequence">
           <ArtOfTheFollowUp />
@@ -86,60 +87,21 @@ function Router() {
           <SpamToSale />
         </Article>
       </Route>
-      {/* ... add a route for each of the 20 articles */}
-
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
-
-function App() {
-  return (
-    <div className="dark">
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Header />
-          <Router />
-        </TooltipProvider>
-      </QueryClientProvider>
-    </div>
-  );
-}
-
-export default App;
-function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/blog" component={Blog} />
-
-      {/* Article Routes */}
-      <Route path="/blog/ultimate-guide-to-cold-emailing">
-        <Article title="The Ultimate Guide to Cold Emailing in 2025">
-          <UltimateGuideToColdEmailing />
-        </Article>
-      </Route>
-      <Route path="/blog/5-common-mistakes-in-sales-outreach">
-        <Article title="5 Common Mistakes to Avoid in Your Sales Outreach">
-          <FiveCommonMistakes />
-        </Article>
-      </Route>
 
       {/* Add these new routes */}
-      <Route path="/blog/how-to-personalize-cold-emails">
-        <Article title="How to Personalize Cold Emails Without Being Creepy">
-          <HowToPersonalize />
+      <Route path="/blog/finding-anyones-email-address">
+        <Article title="Finding Anyone's Email Address: 10 Reliable Methods">
+          <FindingEmailAddress />
         </Article>
       </Route>
-      <Route path="/blog/analyzing-best-cold-email-subject-lines">
-        <Article title="Analyzing the Best Cold Email Subject Lines We've Ever Seen">
-          <AnalyzingSubjectLines />
+      <Route path="/blog/crafting-the-perfect-cta">
+        <Article title="Crafting the Perfect Call-to-Action (CTA) for Your Cold Emails">
+          <PerfectCTA />
         </Article>
       </Route>
-      <Route path="/blog/ab-testing-your-cold-emails">
-        <Article title="A/B Testing Your Cold Emails: A Step-by-Step Guide">
-          <ABTestingGuide />
+      <Route path="/blog/ai-supercharge-cold-email">
+        <Article title="How to Use AI to Supercharge Your Cold Email Outreach">
+          <AISupercharge />
         </Article>
       </Route>
       {/* ... add a route for each of the 20 articles */}
@@ -148,6 +110,7 @@ function Router() {
     </Switch>
   );
 }
+
 
 function App() {
   return (

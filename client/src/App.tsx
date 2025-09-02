@@ -11,10 +11,13 @@ import Article from "@/pages/article";
 // Import your articles here
 import { UltimateGuideToColdEmailing } from "./articles/ultimate-guide-to-cold-emailing";
 import { FiveCommonMistakes } from "./articles/5-common-mistakes-in-sales-outreach";
-// Add these new imports
 import { HowToPersonalize } from "./articles/how-to-personalize-cold-emails";
 import { AnalyzingSubjectLines } from "./articles/analyzing-best-cold-email-subject-lines";
 import { ABTestingGuide } from "./articles/ab-testing-your-cold-emails";
+// Add these new imports
+import { ArtOfTheFollowUp } from "./articles/art-of-the-follow-up";
+import { NeverHeardOfYou } from "./articles/never-heard-of-you-emails";
+import { SpamToSale } from "./articles/spam-to-sale-deliverability-guide";
 // ... import all 20 articles
 
 function Header() {
@@ -34,7 +37,77 @@ function Header() {
   );
 }
 
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/blog" component={Blog} />
 
+      {/* Article Routes */}
+      <Route path="/blog/ultimate-guide-to-cold-emailing">
+        <Article title="The Ultimate Guide to Cold Emailing in 2025">
+          <UltimateGuideToColdEmailing />
+        </Article>
+      </Route>
+      <Route path="/blog/5-common-mistakes-in-sales-outreach">
+        <Article title="5 Common Mistakes to Avoid in Your Sales Outreach">
+          <FiveCommonMistakes />
+        </Article>
+      </Route>
+      <Route path="/blog/how-to-personalize-cold-emails">
+        <Article title="How to Personalize Cold Emails Without Being Creepy">
+          <HowToPersonalize />
+        </Article>
+      </Route>
+      <Route path="/blog/analyzing-best-cold-email-subject-lines">
+        <Article title="Analyzing the Best Cold Email Subject Lines We've Ever Seen">
+          <AnalyzingSubjectLines />
+        </Article>
+      </Route>
+      <Route path="/blog/ab-testing-your-cold-emails">
+        <Article title="A/B Testing Your Cold Emails: A Step-by-Step Guide">
+          <ABTestingGuide />
+        </Article>
+      </Route>
+
+      {/* Add these new routes */}
+      <Route path="/blog/art-of-the-follow-up">
+        <Article title="The Art of the Follow-Up: How to Craft a High-Converting Email Sequence">
+          <ArtOfTheFollowUp />
+        </Article>
+      </Route>
+      <Route path="/blog/never-heard-of-you-emails">
+        <Article title="`Never Heard of You`: How to Write Cold Emails That Get Replies">
+          <NeverHeardOfYou />
+        </Article>
+      </Route>
+      <Route path="/blog/spam-to-sale-deliverability-guide">
+        <Article title="From Spam to Sale: A Guide to Cold Email Deliverability">
+          <SpamToSale />
+        </Article>
+      </Route>
+      {/* ... add a route for each of the 20 articles */}
+
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
+function App() {
+  return (
+    <div className="dark">
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Header />
+          <Router />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </div>
+  );
+}
+
+export default App;
 function Router() {
   return (
     <Switch>

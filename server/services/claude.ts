@@ -138,8 +138,8 @@ Example format:
       return this.generateFallbackEmails(selectedTypes);
     } catch (error) {
       console.error("Error generating emails:", error);
-      console.error("Error details:", error instanceof Error ? error.message : String(error));
-      return this.generateFallbackEmails(selectedTypes);
+      if (error.status === 401) {
+          throw new Error("An unexpected error occurred with the AI service.");
     }
   }
 

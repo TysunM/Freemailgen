@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { emailGeneratorService } from "./services/claude";
+import { emailGeneratorService } from "./services/aiService"; 
 import { emailGenerationInputSchema } from "@shared/schema";
 import { z } from "zod";
 

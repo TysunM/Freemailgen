@@ -1,5 +1,6 @@
 import { type User, type InsertUser, type EmailGeneration, type InsertEmailGeneration } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { DrizzleStorage } from './drizzleStorage';
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -43,6 +44,10 @@ export class MemStorage implements IStorage {
       ...generation,
       id,
       createdAt: new Date(),
+      // Ensure JSONB fields are handled correctly if they are strings
+      generatedEmails: typeof generation.generatedEmails === 'string' ? JSON.parse(generation.generatedEmails) : generation.generatedEmails,
+      deliverabilityAnalysis: typeof generation.deliverabilityAnalysis === 'string' ? JSON.parse(generation.deliverabilityAnalysis) : generation.deliverabilityAnalysis,
+      abTestSuggestions: typeof generation.abTestSuggestions === 'string' ? JSON.parse(generation.abTestSuggestions) : generation.abTestSuggestions,
     };
     this.emailGenerations.set(id, savedGeneration);
     return savedGeneration;
@@ -55,9 +60,20 @@ export class MemStorage implements IStorage {
   async getRecentGenerations(limit: number): Promise<EmailGeneration[]> {
     const generations = Array.from(this.emailGenerations.values());
     return generations
-      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+      .sort((a, b) => (b.createdAt?.getTime() ?? 0) - (a.createdAt?.getTime() ?? 0))
       .slice(0, limit);
   }
 }
 
-export const storage = new MemStorage();
+// Conditionally export the storage implementation
+let storage: IStorage;
+
+if (process.env.NODE_ENV === 'production') {
+  console.log("Using DrizzleStorage for production.");
+  storage = new DrizzleStorage();
+} else {
+  console.log("Using MemStorage for development.");
+  storage = new MemStorage();
+}
+
+export { storage };

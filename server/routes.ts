@@ -40,12 +40,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(response);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        console.error("Validation error:", error.errors);
-        return res.status(400).json({ 
-          message: "Invalid input", 
-          errors: error.errors 
-        });
-      }
+      console.error("Error generating emails:", error);
+      res.status(500).json({ 
+        message: error.message || "Failed to generate email sequence." 
+    });
+}
       
       console.error("Error generating emails:", error);
       console.error("Error stack:", error.stack);
